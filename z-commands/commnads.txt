@@ -1,0 +1,80 @@
+//-----------to run postgree 
+sudo systemctl start postgresql
+sudo systemctl enable postgresql
+
+
+
+///----------create new database and user
+CREATE DATABASE pizza_db;
+CREATE USER pizzaman WITH ENCRYPTED PASSWORD 'pizzapass';
+
+//-----------
+\c pizza_db
+
+GRANT ALL PRIVILEGES ON DATABASE pizza_db TO pizzaman;
+
+//0------ list all tablbes in database
+\dt
+
+
+/------------------
+accessing the database
+ psql -h localhost -p 5432 -U postgres -d pizza_db
+
+ alternatively
+
+ Alternatively, you can switch to the postgres system user and access the PostgreSQL shell without the password. Here's how:
+
+Switch to the postgres user:
+
+    udo -i -u postgres
+Now open the PostgreSQL CLI:
+
+
+    psql
+
+Connect to your database:
+Once you're inside the PostgreSQL CLI, connect to your database:
+    \c pizza_db
+ //----
+ 
+ 
+ //------------
+ Migrations Status: If you face further issues with migrations or schema, make sure that the migration was applied successfully in the database. You can use the following SQL query to inspect the Prisma migration history:
+
+SELECT * FROM _prisma_migrations;
+
+
+
+
+
+
+
+this table format in database
+CREATE TABLE "Pizza" (
+  id SERIAL PRIMARY KEY,
+  name TEXT NOT NULL,
+  unitPrice NUMERIC(5,2) NOT NULL,
+  imageUrl TEXT,
+  ingredients TEXT[],
+  soldOut BOOLEAN DEFAULT FALSE
+);
+
+and this is how inserted
+INSERT INTO "Pizza" ("name", "unitPrice", "imageUrl", "ingredients", "soldOut")
+VALUES
+  ('Margherita', 12.00, 'https://dclaevazetcjjkrzczpc.supabase.co/storage/v1/object/public/pizzas/pizza-1.jpg', ARRAY['tomato', 'mozzarella', 'basil'], false),
+
+
+
+
+  /----------------------oRER TABLE
+  CREATE TABLE "Order" (
+  id SERIAL PRIMARY KEY,
+  customer TEXT NOT NULL,
+  phone TEXT NOT NULL,
+  address TEXT NOT NULL,
+  priority BOOLEAN DEFAULT FALSE,
+  cart JSONB NOT NULL,
+  created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);

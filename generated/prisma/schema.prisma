@@ -1,0 +1,28 @@
+generator client {
+  provider = "prisma-client-js"
+  output   = "../generated/prisma"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Pizza {
+  id          Int      @id @default(autoincrement())
+  name        String
+  unitPrice   Int
+  imageUrl    String
+  ingredients String[] // PostgreSQL supports arrays 
+  soldOut     Boolean  @default(false)
+}
+
+model Order {
+  id         Int      @id @default(autoincrement())
+  customer   String
+  phone      String
+  address    String
+  priority   Boolean  @default(false)
+  cart       Json
+  created_at DateTime @default(now())
+}

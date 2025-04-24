@@ -1,0 +1,28 @@
+
+You start with a Pizza model:
+
+
+model Pizza {
+  id    Int    @id @default(autoincrement())
+  name  String
+}
+You run:
+
+npx prisma migrate dev --name init
+✅ It creates a table in the database.
+
+Later, you add a new field:
+
+
+  price Float
+You run:
+npx prisma migrate dev --name add-price
+✅ It updates the table in the database (adds the price column).
+
+
+First you created the table (init)
+
+Then you added the price column (add-price)
+
+So it becomes a version history of your DB schema — very useful for team projects and large applications!
+
