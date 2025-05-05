@@ -17,26 +17,32 @@ GRANT ALL PRIVILEGES ON DATABASE pizza_db TO pizzaman;
 \dt
 
 
-/------------------
+
+
+/----------------Accessing below ttwo methods direct and step my step 
+
+
+\------------------------------------------------
+Switch to the postgres user:
+    sudo -i -u postgres
+Now open the PostgreSQL CLI:
+    psql
+
+Connect to your database: any database in this for now we have pizza_db
+Once you're inside the PostgreSQL CLI, connect to your database:
+    \c pizza_db
+ //-------------------------------------------
+
+
+ /------------------
 accessing the database
  psql -h localhost -p 5432 -U postgres -d pizza_db
 
  alternatively
 
  Alternatively, you can switch to the postgres system user and access the PostgreSQL shell without the password. Here's how:
+/----------------------------------------------------
 
-Switch to the postgres user:
-
-    udo -i -u postgres
-Now open the PostgreSQL CLI:
-
-
-    psql
-
-Connect to your database:
-Once you're inside the PostgreSQL CLI, connect to your database:
-    \c pizza_db
- //----
  
  
  //------------
@@ -78,3 +84,87 @@ VALUES
   cart JSONB NOT NULL,
   created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
+
+
+
+
+
+
+
+
+
+
+/------------------------------
+
+Moving database to host it on supabase 
+
+first create a new project on supabase  
+
+then mograte your database from local to supabase 
+
+1   create dump file
+     Save to /tmp (safe and easy)
+
+      sudo -u postgres pg_dump -d pizza_db -f /tmp/pizza_dump.sql
+      its not creting in root because postgres dont have access
+      Then move it to your home folder:
+
+      sudo mv /tmp/pizza_dump.sql .
+
+
+copy dump file code and run in sql edotor supabase 
+i got some errors and fixed from gpt in dump file code
+and then it runs and my tables are now in supabase and all data migrated
+
+
+then from supabse take connections string and write your passeword in string 
+postgresql://postgres:PIZZAPSQLDBsibte@#11march@db.kxfvcrhjbjavzcapwwve.supabase.co:5432/postgres
+
+set this is databseurl in .env that befor u using local 
+
+like this...
+# for local 
+# DATABASE_URL="postgresql://postgres:newpassword@localhost:5432/pizza_db?schema=public"
+
+#for hostd database in supabase
+postgresql://postgres:PIZZAPSQLDBsibte@#11march@db.kxfvcrhjbjavzcapwwve.supabase.co:5432/postgres
+
+
+
+now wher to acces data in supabase in api u get project url
+
+https://kxfvcrhjbjavzcapwwve.supabase.co
+and then add the table name like thsi 
+
+https://kxfvcrhjbjavzcapwwve.supabase.co/rest/v1/Pizza
+
+
+
+for testing in thunder clinet use this url and get option 
+
+and in header 
+
+add apikey and value to anon key obtained from supabase
+which is this           eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imt4ZnZjcmhqYmphdnpjYXB3d3ZlIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDYwMTE4NDgsImV4cCI6MjA2MTU4Nzg0OH0.jZFUesBz65FqjKi_lsbz9VyOayA0wDbQZY35lQ1hEm0
+
+
+so header look like 
+
+apikey  &  value:    eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imt4ZnZjcmhqYmphdnpjYXB3d3ZlIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDYwMTE4NDgsImV4cCI6MjA2MTU4Nzg0OH0.jZFUesBz65FqjKi_lsbz9VyOayA0wDbQZY35lQ1hEm0
+
+it now returns me data 
+
+
+
+
+
+//----------------
+use of vlidation or secitiy in main.ts 
+
+Prevents unexpected data injection (e.g., isAdmin, role, or password override).
+
+Enforces strict API contracts (clean, predictable DTOs).
+
+Makes your app more secure and reliable, especially in production.
+
+///------------------------------------------------

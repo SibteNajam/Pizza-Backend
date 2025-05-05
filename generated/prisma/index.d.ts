@@ -226,8 +226,8 @@ export namespace Prisma {
   export import Exact = $Public.Exact
 
   /**
-   * Prisma Client JS version: 6.6.0
-   * Query Engine version: f676762280b54cd07c770017ed3711ddde35f37a
+   * Prisma Client JS version: 6.7.0
+   * Query Engine version: 3cff47a7f5d65c3ea74883f1d736e41d68ce91ed
    */
   export type PrismaVersion = {
     client: string
@@ -2016,10 +2016,14 @@ export namespace Prisma {
 
   export type OrderAvgAggregateOutputType = {
     id: number | null
+    orderPrice: Decimal | null
+    priorityPrice: Decimal | null
   }
 
   export type OrderSumAggregateOutputType = {
     id: number | null
+    orderPrice: Decimal | null
+    priorityPrice: Decimal | null
   }
 
   export type OrderMinAggregateOutputType = {
@@ -2029,6 +2033,10 @@ export namespace Prisma {
     address: string | null
     priority: boolean | null
     created_at: Date | null
+    position: string | null
+    orderPrice: Decimal | null
+    priorityPrice: Decimal | null
+    estimatedDelivery: Date | null
   }
 
   export type OrderMaxAggregateOutputType = {
@@ -2038,6 +2046,10 @@ export namespace Prisma {
     address: string | null
     priority: boolean | null
     created_at: Date | null
+    position: string | null
+    orderPrice: Decimal | null
+    priorityPrice: Decimal | null
+    estimatedDelivery: Date | null
   }
 
   export type OrderCountAggregateOutputType = {
@@ -2048,16 +2060,24 @@ export namespace Prisma {
     priority: number
     cart: number
     created_at: number
+    position: number
+    orderPrice: number
+    priorityPrice: number
+    estimatedDelivery: number
     _all: number
   }
 
 
   export type OrderAvgAggregateInputType = {
     id?: true
+    orderPrice?: true
+    priorityPrice?: true
   }
 
   export type OrderSumAggregateInputType = {
     id?: true
+    orderPrice?: true
+    priorityPrice?: true
   }
 
   export type OrderMinAggregateInputType = {
@@ -2067,6 +2087,10 @@ export namespace Prisma {
     address?: true
     priority?: true
     created_at?: true
+    position?: true
+    orderPrice?: true
+    priorityPrice?: true
+    estimatedDelivery?: true
   }
 
   export type OrderMaxAggregateInputType = {
@@ -2076,6 +2100,10 @@ export namespace Prisma {
     address?: true
     priority?: true
     created_at?: true
+    position?: true
+    orderPrice?: true
+    priorityPrice?: true
+    estimatedDelivery?: true
   }
 
   export type OrderCountAggregateInputType = {
@@ -2086,6 +2114,10 @@ export namespace Prisma {
     priority?: true
     cart?: true
     created_at?: true
+    position?: true
+    orderPrice?: true
+    priorityPrice?: true
+    estimatedDelivery?: true
     _all?: true
   }
 
@@ -2180,9 +2212,13 @@ export namespace Prisma {
     customer: string
     phone: string
     address: string
-    priority: boolean
+    priority: boolean | null
     cart: JsonValue
-    created_at: Date
+    created_at: Date | null
+    position: string | null
+    orderPrice: Decimal
+    priorityPrice: Decimal | null
+    estimatedDelivery: Date | null
     _count: OrderCountAggregateOutputType | null
     _avg: OrderAvgAggregateOutputType | null
     _sum: OrderSumAggregateOutputType | null
@@ -2212,6 +2248,10 @@ export namespace Prisma {
     priority?: boolean
     cart?: boolean
     created_at?: boolean
+    position?: boolean
+    orderPrice?: boolean
+    priorityPrice?: boolean
+    estimatedDelivery?: boolean
   }, ExtArgs["result"]["order"]>
 
   export type OrderSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
@@ -2222,6 +2262,10 @@ export namespace Prisma {
     priority?: boolean
     cart?: boolean
     created_at?: boolean
+    position?: boolean
+    orderPrice?: boolean
+    priorityPrice?: boolean
+    estimatedDelivery?: boolean
   }, ExtArgs["result"]["order"]>
 
   export type OrderSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
@@ -2232,6 +2276,10 @@ export namespace Prisma {
     priority?: boolean
     cart?: boolean
     created_at?: boolean
+    position?: boolean
+    orderPrice?: boolean
+    priorityPrice?: boolean
+    estimatedDelivery?: boolean
   }, ExtArgs["result"]["order"]>
 
   export type OrderSelectScalar = {
@@ -2242,9 +2290,13 @@ export namespace Prisma {
     priority?: boolean
     cart?: boolean
     created_at?: boolean
+    position?: boolean
+    orderPrice?: boolean
+    priorityPrice?: boolean
+    estimatedDelivery?: boolean
   }
 
-  export type OrderOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "customer" | "phone" | "address" | "priority" | "cart" | "created_at", ExtArgs["result"]["order"]>
+  export type OrderOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "customer" | "phone" | "address" | "priority" | "cart" | "created_at" | "position" | "orderPrice" | "priorityPrice" | "estimatedDelivery", ExtArgs["result"]["order"]>
 
   export type $OrderPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "Order"
@@ -2254,9 +2306,13 @@ export namespace Prisma {
       customer: string
       phone: string
       address: string
-      priority: boolean
+      priority: boolean | null
       cart: Prisma.JsonValue
-      created_at: Date
+      created_at: Date | null
+      position: string | null
+      orderPrice: Prisma.Decimal
+      priorityPrice: Prisma.Decimal | null
+      estimatedDelivery: Date | null
     }, ExtArgs["result"]["order"]>
     composites: {}
   }
@@ -2687,6 +2743,10 @@ export namespace Prisma {
     readonly priority: FieldRef<"Order", 'Boolean'>
     readonly cart: FieldRef<"Order", 'Json'>
     readonly created_at: FieldRef<"Order", 'DateTime'>
+    readonly position: FieldRef<"Order", 'String'>
+    readonly orderPrice: FieldRef<"Order", 'Decimal'>
+    readonly priorityPrice: FieldRef<"Order", 'Decimal'>
+    readonly estimatedDelivery: FieldRef<"Order", 'DateTime'>
   }
     
 
@@ -3086,7 +3146,11 @@ export namespace Prisma {
     address: 'address',
     priority: 'priority',
     cart: 'cart',
-    created_at: 'created_at'
+    created_at: 'created_at',
+    position: 'position',
+    orderPrice: 'orderPrice',
+    priorityPrice: 'priorityPrice',
+    estimatedDelivery: 'estimatedDelivery'
   };
 
   export type OrderScalarFieldEnum = (typeof OrderScalarFieldEnum)[keyof typeof OrderScalarFieldEnum]
@@ -3122,6 +3186,14 @@ export namespace Prisma {
   };
 
   export type JsonNullValueFilter = (typeof JsonNullValueFilter)[keyof typeof JsonNullValueFilter]
+
+
+  export const NullsOrder: {
+    first: 'first',
+    last: 'last'
+  };
+
+  export type NullsOrder = (typeof NullsOrder)[keyof typeof NullsOrder]
 
 
   /**
@@ -3189,6 +3261,20 @@ export namespace Prisma {
    * Reference to a field of type 'DateTime[]'
    */
   export type ListDateTimeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'DateTime[]'>
+    
+
+
+  /**
+   * Reference to a field of type 'Decimal'
+   */
+  export type DecimalFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Decimal'>
+    
+
+
+  /**
+   * Reference to a field of type 'Decimal[]'
+   */
+  export type ListDecimalFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Decimal[]'>
     
 
 
@@ -3276,9 +3362,13 @@ export namespace Prisma {
     customer?: StringFilter<"Order"> | string
     phone?: StringFilter<"Order"> | string
     address?: StringFilter<"Order"> | string
-    priority?: BoolFilter<"Order"> | boolean
+    priority?: BoolNullableFilter<"Order"> | boolean | null
     cart?: JsonFilter<"Order">
-    created_at?: DateTimeFilter<"Order"> | Date | string
+    created_at?: DateTimeNullableFilter<"Order"> | Date | string | null
+    position?: StringNullableFilter<"Order"> | string | null
+    orderPrice?: DecimalFilter<"Order"> | Decimal | DecimalJsLike | number | string
+    priorityPrice?: DecimalNullableFilter<"Order"> | Decimal | DecimalJsLike | number | string | null
+    estimatedDelivery?: DateTimeNullableFilter<"Order"> | Date | string | null
   }
 
   export type OrderOrderByWithRelationInput = {
@@ -3286,9 +3376,13 @@ export namespace Prisma {
     customer?: SortOrder
     phone?: SortOrder
     address?: SortOrder
-    priority?: SortOrder
+    priority?: SortOrderInput | SortOrder
     cart?: SortOrder
-    created_at?: SortOrder
+    created_at?: SortOrderInput | SortOrder
+    position?: SortOrderInput | SortOrder
+    orderPrice?: SortOrder
+    priorityPrice?: SortOrderInput | SortOrder
+    estimatedDelivery?: SortOrderInput | SortOrder
   }
 
   export type OrderWhereUniqueInput = Prisma.AtLeast<{
@@ -3299,9 +3393,13 @@ export namespace Prisma {
     customer?: StringFilter<"Order"> | string
     phone?: StringFilter<"Order"> | string
     address?: StringFilter<"Order"> | string
-    priority?: BoolFilter<"Order"> | boolean
+    priority?: BoolNullableFilter<"Order"> | boolean | null
     cart?: JsonFilter<"Order">
-    created_at?: DateTimeFilter<"Order"> | Date | string
+    created_at?: DateTimeNullableFilter<"Order"> | Date | string | null
+    position?: StringNullableFilter<"Order"> | string | null
+    orderPrice?: DecimalFilter<"Order"> | Decimal | DecimalJsLike | number | string
+    priorityPrice?: DecimalNullableFilter<"Order"> | Decimal | DecimalJsLike | number | string | null
+    estimatedDelivery?: DateTimeNullableFilter<"Order"> | Date | string | null
   }, "id">
 
   export type OrderOrderByWithAggregationInput = {
@@ -3309,9 +3407,13 @@ export namespace Prisma {
     customer?: SortOrder
     phone?: SortOrder
     address?: SortOrder
-    priority?: SortOrder
+    priority?: SortOrderInput | SortOrder
     cart?: SortOrder
-    created_at?: SortOrder
+    created_at?: SortOrderInput | SortOrder
+    position?: SortOrderInput | SortOrder
+    orderPrice?: SortOrder
+    priorityPrice?: SortOrderInput | SortOrder
+    estimatedDelivery?: SortOrderInput | SortOrder
     _count?: OrderCountOrderByAggregateInput
     _avg?: OrderAvgOrderByAggregateInput
     _max?: OrderMaxOrderByAggregateInput
@@ -3327,9 +3429,13 @@ export namespace Prisma {
     customer?: StringWithAggregatesFilter<"Order"> | string
     phone?: StringWithAggregatesFilter<"Order"> | string
     address?: StringWithAggregatesFilter<"Order"> | string
-    priority?: BoolWithAggregatesFilter<"Order"> | boolean
+    priority?: BoolNullableWithAggregatesFilter<"Order"> | boolean | null
     cart?: JsonWithAggregatesFilter<"Order">
-    created_at?: DateTimeWithAggregatesFilter<"Order"> | Date | string
+    created_at?: DateTimeNullableWithAggregatesFilter<"Order"> | Date | string | null
+    position?: StringNullableWithAggregatesFilter<"Order"> | string | null
+    orderPrice?: DecimalWithAggregatesFilter<"Order"> | Decimal | DecimalJsLike | number | string
+    priorityPrice?: DecimalNullableWithAggregatesFilter<"Order"> | Decimal | DecimalJsLike | number | string | null
+    estimatedDelivery?: DateTimeNullableWithAggregatesFilter<"Order"> | Date | string | null
   }
 
   export type PizzaCreateInput = {
@@ -3396,9 +3502,13 @@ export namespace Prisma {
     customer: string
     phone: string
     address: string
-    priority?: boolean
+    priority?: boolean | null
     cart: JsonNullValueInput | InputJsonValue
-    created_at?: Date | string
+    created_at?: Date | string | null
+    position?: string | null
+    orderPrice: Decimal | DecimalJsLike | number | string
+    priorityPrice?: Decimal | DecimalJsLike | number | string | null
+    estimatedDelivery?: Date | string | null
   }
 
   export type OrderUncheckedCreateInput = {
@@ -3406,18 +3516,26 @@ export namespace Prisma {
     customer: string
     phone: string
     address: string
-    priority?: boolean
+    priority?: boolean | null
     cart: JsonNullValueInput | InputJsonValue
-    created_at?: Date | string
+    created_at?: Date | string | null
+    position?: string | null
+    orderPrice: Decimal | DecimalJsLike | number | string
+    priorityPrice?: Decimal | DecimalJsLike | number | string | null
+    estimatedDelivery?: Date | string | null
   }
 
   export type OrderUpdateInput = {
     customer?: StringFieldUpdateOperationsInput | string
     phone?: StringFieldUpdateOperationsInput | string
     address?: StringFieldUpdateOperationsInput | string
-    priority?: BoolFieldUpdateOperationsInput | boolean
+    priority?: NullableBoolFieldUpdateOperationsInput | boolean | null
     cart?: JsonNullValueInput | InputJsonValue
-    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    created_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    position?: NullableStringFieldUpdateOperationsInput | string | null
+    orderPrice?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    priorityPrice?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    estimatedDelivery?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   }
 
   export type OrderUncheckedUpdateInput = {
@@ -3425,9 +3543,13 @@ export namespace Prisma {
     customer?: StringFieldUpdateOperationsInput | string
     phone?: StringFieldUpdateOperationsInput | string
     address?: StringFieldUpdateOperationsInput | string
-    priority?: BoolFieldUpdateOperationsInput | boolean
+    priority?: NullableBoolFieldUpdateOperationsInput | boolean | null
     cart?: JsonNullValueInput | InputJsonValue
-    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    created_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    position?: NullableStringFieldUpdateOperationsInput | string | null
+    orderPrice?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    priorityPrice?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    estimatedDelivery?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   }
 
   export type OrderCreateManyInput = {
@@ -3435,18 +3557,26 @@ export namespace Prisma {
     customer: string
     phone: string
     address: string
-    priority?: boolean
+    priority?: boolean | null
     cart: JsonNullValueInput | InputJsonValue
-    created_at?: Date | string
+    created_at?: Date | string | null
+    position?: string | null
+    orderPrice: Decimal | DecimalJsLike | number | string
+    priorityPrice?: Decimal | DecimalJsLike | number | string | null
+    estimatedDelivery?: Date | string | null
   }
 
   export type OrderUpdateManyMutationInput = {
     customer?: StringFieldUpdateOperationsInput | string
     phone?: StringFieldUpdateOperationsInput | string
     address?: StringFieldUpdateOperationsInput | string
-    priority?: BoolFieldUpdateOperationsInput | boolean
+    priority?: NullableBoolFieldUpdateOperationsInput | boolean | null
     cart?: JsonNullValueInput | InputJsonValue
-    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    created_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    position?: NullableStringFieldUpdateOperationsInput | string | null
+    orderPrice?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    priorityPrice?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    estimatedDelivery?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   }
 
   export type OrderUncheckedUpdateManyInput = {
@@ -3454,9 +3584,13 @@ export namespace Prisma {
     customer?: StringFieldUpdateOperationsInput | string
     phone?: StringFieldUpdateOperationsInput | string
     address?: StringFieldUpdateOperationsInput | string
-    priority?: BoolFieldUpdateOperationsInput | boolean
+    priority?: NullableBoolFieldUpdateOperationsInput | boolean | null
     cart?: JsonNullValueInput | InputJsonValue
-    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    created_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    position?: NullableStringFieldUpdateOperationsInput | string | null
+    orderPrice?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    priorityPrice?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    estimatedDelivery?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   }
 
   export type IntFilter<$PrismaModel = never> = {
@@ -3574,6 +3708,11 @@ export namespace Prisma {
     _min?: NestedBoolFilter<$PrismaModel>
     _max?: NestedBoolFilter<$PrismaModel>
   }
+
+  export type BoolNullableFilter<$PrismaModel = never> = {
+    equals?: boolean | BooleanFieldRefInput<$PrismaModel> | null
+    not?: NestedBoolNullableFilter<$PrismaModel> | boolean | null
+  }
   export type JsonFilter<$PrismaModel = never> =
     | PatchUndefined<
         Either<Required<JsonFilterBase<$PrismaModel>>, Exclude<keyof Required<JsonFilterBase<$PrismaModel>>, 'path'>>,
@@ -3598,15 +3737,57 @@ export namespace Prisma {
     not?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | JsonNullValueFilter
   }
 
-  export type DateTimeFilter<$PrismaModel = never> = {
-    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
-    notIn?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
+  export type DateTimeNullableFilter<$PrismaModel = never> = {
+    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel> | null
+    in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel> | null
+    notIn?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel> | null
     lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
     lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
     gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
     gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    not?: NestedDateTimeFilter<$PrismaModel> | Date | string
+    not?: NestedDateTimeNullableFilter<$PrismaModel> | Date | string | null
+  }
+
+  export type StringNullableFilter<$PrismaModel = never> = {
+    equals?: string | StringFieldRefInput<$PrismaModel> | null
+    in?: string[] | ListStringFieldRefInput<$PrismaModel> | null
+    notIn?: string[] | ListStringFieldRefInput<$PrismaModel> | null
+    lt?: string | StringFieldRefInput<$PrismaModel>
+    lte?: string | StringFieldRefInput<$PrismaModel>
+    gt?: string | StringFieldRefInput<$PrismaModel>
+    gte?: string | StringFieldRefInput<$PrismaModel>
+    contains?: string | StringFieldRefInput<$PrismaModel>
+    startsWith?: string | StringFieldRefInput<$PrismaModel>
+    endsWith?: string | StringFieldRefInput<$PrismaModel>
+    mode?: QueryMode
+    not?: NestedStringNullableFilter<$PrismaModel> | string | null
+  }
+
+  export type DecimalFilter<$PrismaModel = never> = {
+    equals?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
+    in?: Decimal[] | DecimalJsLike[] | number[] | string[] | ListDecimalFieldRefInput<$PrismaModel>
+    notIn?: Decimal[] | DecimalJsLike[] | number[] | string[] | ListDecimalFieldRefInput<$PrismaModel>
+    lt?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
+    lte?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
+    gt?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
+    gte?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
+    not?: NestedDecimalFilter<$PrismaModel> | Decimal | DecimalJsLike | number | string
+  }
+
+  export type DecimalNullableFilter<$PrismaModel = never> = {
+    equals?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel> | null
+    in?: Decimal[] | DecimalJsLike[] | number[] | string[] | ListDecimalFieldRefInput<$PrismaModel> | null
+    notIn?: Decimal[] | DecimalJsLike[] | number[] | string[] | ListDecimalFieldRefInput<$PrismaModel> | null
+    lt?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
+    lte?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
+    gt?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
+    gte?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
+    not?: NestedDecimalNullableFilter<$PrismaModel> | Decimal | DecimalJsLike | number | string | null
+  }
+
+  export type SortOrderInput = {
+    sort: SortOrder
+    nulls?: NullsOrder
   }
 
   export type OrderCountOrderByAggregateInput = {
@@ -3617,10 +3798,16 @@ export namespace Prisma {
     priority?: SortOrder
     cart?: SortOrder
     created_at?: SortOrder
+    position?: SortOrder
+    orderPrice?: SortOrder
+    priorityPrice?: SortOrder
+    estimatedDelivery?: SortOrder
   }
 
   export type OrderAvgOrderByAggregateInput = {
     id?: SortOrder
+    orderPrice?: SortOrder
+    priorityPrice?: SortOrder
   }
 
   export type OrderMaxOrderByAggregateInput = {
@@ -3630,6 +3817,10 @@ export namespace Prisma {
     address?: SortOrder
     priority?: SortOrder
     created_at?: SortOrder
+    position?: SortOrder
+    orderPrice?: SortOrder
+    priorityPrice?: SortOrder
+    estimatedDelivery?: SortOrder
   }
 
   export type OrderMinOrderByAggregateInput = {
@@ -3639,10 +3830,24 @@ export namespace Prisma {
     address?: SortOrder
     priority?: SortOrder
     created_at?: SortOrder
+    position?: SortOrder
+    orderPrice?: SortOrder
+    priorityPrice?: SortOrder
+    estimatedDelivery?: SortOrder
   }
 
   export type OrderSumOrderByAggregateInput = {
     id?: SortOrder
+    orderPrice?: SortOrder
+    priorityPrice?: SortOrder
+  }
+
+  export type BoolNullableWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: boolean | BooleanFieldRefInput<$PrismaModel> | null
+    not?: NestedBoolNullableWithAggregatesFilter<$PrismaModel> | boolean | null
+    _count?: NestedIntNullableFilter<$PrismaModel>
+    _min?: NestedBoolNullableFilter<$PrismaModel>
+    _max?: NestedBoolNullableFilter<$PrismaModel>
   }
   export type JsonWithAggregatesFilter<$PrismaModel = never> =
     | PatchUndefined<
@@ -3671,18 +3876,68 @@ export namespace Prisma {
     _max?: NestedJsonFilter<$PrismaModel>
   }
 
-  export type DateTimeWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
-    notIn?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
+  export type DateTimeNullableWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel> | null
+    in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel> | null
+    notIn?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel> | null
     lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
     lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
     gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
     gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    not?: NestedDateTimeWithAggregatesFilter<$PrismaModel> | Date | string
+    not?: NestedDateTimeNullableWithAggregatesFilter<$PrismaModel> | Date | string | null
+    _count?: NestedIntNullableFilter<$PrismaModel>
+    _min?: NestedDateTimeNullableFilter<$PrismaModel>
+    _max?: NestedDateTimeNullableFilter<$PrismaModel>
+  }
+
+  export type StringNullableWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: string | StringFieldRefInput<$PrismaModel> | null
+    in?: string[] | ListStringFieldRefInput<$PrismaModel> | null
+    notIn?: string[] | ListStringFieldRefInput<$PrismaModel> | null
+    lt?: string | StringFieldRefInput<$PrismaModel>
+    lte?: string | StringFieldRefInput<$PrismaModel>
+    gt?: string | StringFieldRefInput<$PrismaModel>
+    gte?: string | StringFieldRefInput<$PrismaModel>
+    contains?: string | StringFieldRefInput<$PrismaModel>
+    startsWith?: string | StringFieldRefInput<$PrismaModel>
+    endsWith?: string | StringFieldRefInput<$PrismaModel>
+    mode?: QueryMode
+    not?: NestedStringNullableWithAggregatesFilter<$PrismaModel> | string | null
+    _count?: NestedIntNullableFilter<$PrismaModel>
+    _min?: NestedStringNullableFilter<$PrismaModel>
+    _max?: NestedStringNullableFilter<$PrismaModel>
+  }
+
+  export type DecimalWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
+    in?: Decimal[] | DecimalJsLike[] | number[] | string[] | ListDecimalFieldRefInput<$PrismaModel>
+    notIn?: Decimal[] | DecimalJsLike[] | number[] | string[] | ListDecimalFieldRefInput<$PrismaModel>
+    lt?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
+    lte?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
+    gt?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
+    gte?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
+    not?: NestedDecimalWithAggregatesFilter<$PrismaModel> | Decimal | DecimalJsLike | number | string
     _count?: NestedIntFilter<$PrismaModel>
-    _min?: NestedDateTimeFilter<$PrismaModel>
-    _max?: NestedDateTimeFilter<$PrismaModel>
+    _avg?: NestedDecimalFilter<$PrismaModel>
+    _sum?: NestedDecimalFilter<$PrismaModel>
+    _min?: NestedDecimalFilter<$PrismaModel>
+    _max?: NestedDecimalFilter<$PrismaModel>
+  }
+
+  export type DecimalNullableWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel> | null
+    in?: Decimal[] | DecimalJsLike[] | number[] | string[] | ListDecimalFieldRefInput<$PrismaModel> | null
+    notIn?: Decimal[] | DecimalJsLike[] | number[] | string[] | ListDecimalFieldRefInput<$PrismaModel> | null
+    lt?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
+    lte?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
+    gt?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
+    gte?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
+    not?: NestedDecimalNullableWithAggregatesFilter<$PrismaModel> | Decimal | DecimalJsLike | number | string | null
+    _count?: NestedIntNullableFilter<$PrismaModel>
+    _avg?: NestedDecimalNullableFilter<$PrismaModel>
+    _sum?: NestedDecimalNullableFilter<$PrismaModel>
+    _min?: NestedDecimalNullableFilter<$PrismaModel>
+    _max?: NestedDecimalNullableFilter<$PrismaModel>
   }
 
   export type PizzaCreateingredientsInput = {
@@ -3710,8 +3965,32 @@ export namespace Prisma {
     set?: boolean
   }
 
-  export type DateTimeFieldUpdateOperationsInput = {
-    set?: Date | string
+  export type NullableBoolFieldUpdateOperationsInput = {
+    set?: boolean | null
+  }
+
+  export type NullableDateTimeFieldUpdateOperationsInput = {
+    set?: Date | string | null
+  }
+
+  export type NullableStringFieldUpdateOperationsInput = {
+    set?: string | null
+  }
+
+  export type DecimalFieldUpdateOperationsInput = {
+    set?: Decimal | DecimalJsLike | number | string
+    increment?: Decimal | DecimalJsLike | number | string
+    decrement?: Decimal | DecimalJsLike | number | string
+    multiply?: Decimal | DecimalJsLike | number | string
+    divide?: Decimal | DecimalJsLike | number | string
+  }
+
+  export type NullableDecimalFieldUpdateOperationsInput = {
+    set?: Decimal | DecimalJsLike | number | string | null
+    increment?: Decimal | DecimalJsLike | number | string
+    decrement?: Decimal | DecimalJsLike | number | string
+    multiply?: Decimal | DecimalJsLike | number | string
+    divide?: Decimal | DecimalJsLike | number | string
   }
 
   export type NestedIntFilter<$PrismaModel = never> = {
@@ -3796,15 +4075,75 @@ export namespace Prisma {
     _max?: NestedBoolFilter<$PrismaModel>
   }
 
-  export type NestedDateTimeFilter<$PrismaModel = never> = {
-    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
-    notIn?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
+  export type NestedBoolNullableFilter<$PrismaModel = never> = {
+    equals?: boolean | BooleanFieldRefInput<$PrismaModel> | null
+    not?: NestedBoolNullableFilter<$PrismaModel> | boolean | null
+  }
+
+  export type NestedDateTimeNullableFilter<$PrismaModel = never> = {
+    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel> | null
+    in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel> | null
+    notIn?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel> | null
     lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
     lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
     gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
     gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    not?: NestedDateTimeFilter<$PrismaModel> | Date | string
+    not?: NestedDateTimeNullableFilter<$PrismaModel> | Date | string | null
+  }
+
+  export type NestedStringNullableFilter<$PrismaModel = never> = {
+    equals?: string | StringFieldRefInput<$PrismaModel> | null
+    in?: string[] | ListStringFieldRefInput<$PrismaModel> | null
+    notIn?: string[] | ListStringFieldRefInput<$PrismaModel> | null
+    lt?: string | StringFieldRefInput<$PrismaModel>
+    lte?: string | StringFieldRefInput<$PrismaModel>
+    gt?: string | StringFieldRefInput<$PrismaModel>
+    gte?: string | StringFieldRefInput<$PrismaModel>
+    contains?: string | StringFieldRefInput<$PrismaModel>
+    startsWith?: string | StringFieldRefInput<$PrismaModel>
+    endsWith?: string | StringFieldRefInput<$PrismaModel>
+    not?: NestedStringNullableFilter<$PrismaModel> | string | null
+  }
+
+  export type NestedDecimalFilter<$PrismaModel = never> = {
+    equals?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
+    in?: Decimal[] | DecimalJsLike[] | number[] | string[] | ListDecimalFieldRefInput<$PrismaModel>
+    notIn?: Decimal[] | DecimalJsLike[] | number[] | string[] | ListDecimalFieldRefInput<$PrismaModel>
+    lt?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
+    lte?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
+    gt?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
+    gte?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
+    not?: NestedDecimalFilter<$PrismaModel> | Decimal | DecimalJsLike | number | string
+  }
+
+  export type NestedDecimalNullableFilter<$PrismaModel = never> = {
+    equals?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel> | null
+    in?: Decimal[] | DecimalJsLike[] | number[] | string[] | ListDecimalFieldRefInput<$PrismaModel> | null
+    notIn?: Decimal[] | DecimalJsLike[] | number[] | string[] | ListDecimalFieldRefInput<$PrismaModel> | null
+    lt?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
+    lte?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
+    gt?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
+    gte?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
+    not?: NestedDecimalNullableFilter<$PrismaModel> | Decimal | DecimalJsLike | number | string | null
+  }
+
+  export type NestedBoolNullableWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: boolean | BooleanFieldRefInput<$PrismaModel> | null
+    not?: NestedBoolNullableWithAggregatesFilter<$PrismaModel> | boolean | null
+    _count?: NestedIntNullableFilter<$PrismaModel>
+    _min?: NestedBoolNullableFilter<$PrismaModel>
+    _max?: NestedBoolNullableFilter<$PrismaModel>
+  }
+
+  export type NestedIntNullableFilter<$PrismaModel = never> = {
+    equals?: number | IntFieldRefInput<$PrismaModel> | null
+    in?: number[] | ListIntFieldRefInput<$PrismaModel> | null
+    notIn?: number[] | ListIntFieldRefInput<$PrismaModel> | null
+    lt?: number | IntFieldRefInput<$PrismaModel>
+    lte?: number | IntFieldRefInput<$PrismaModel>
+    gt?: number | IntFieldRefInput<$PrismaModel>
+    gte?: number | IntFieldRefInput<$PrismaModel>
+    not?: NestedIntNullableFilter<$PrismaModel> | number | null
   }
   export type NestedJsonFilter<$PrismaModel = never> =
     | PatchUndefined<
@@ -3830,18 +4169,67 @@ export namespace Prisma {
     not?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | JsonNullValueFilter
   }
 
-  export type NestedDateTimeWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
-    notIn?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
+  export type NestedDateTimeNullableWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel> | null
+    in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel> | null
+    notIn?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel> | null
     lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
     lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
     gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
     gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    not?: NestedDateTimeWithAggregatesFilter<$PrismaModel> | Date | string
+    not?: NestedDateTimeNullableWithAggregatesFilter<$PrismaModel> | Date | string | null
+    _count?: NestedIntNullableFilter<$PrismaModel>
+    _min?: NestedDateTimeNullableFilter<$PrismaModel>
+    _max?: NestedDateTimeNullableFilter<$PrismaModel>
+  }
+
+  export type NestedStringNullableWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: string | StringFieldRefInput<$PrismaModel> | null
+    in?: string[] | ListStringFieldRefInput<$PrismaModel> | null
+    notIn?: string[] | ListStringFieldRefInput<$PrismaModel> | null
+    lt?: string | StringFieldRefInput<$PrismaModel>
+    lte?: string | StringFieldRefInput<$PrismaModel>
+    gt?: string | StringFieldRefInput<$PrismaModel>
+    gte?: string | StringFieldRefInput<$PrismaModel>
+    contains?: string | StringFieldRefInput<$PrismaModel>
+    startsWith?: string | StringFieldRefInput<$PrismaModel>
+    endsWith?: string | StringFieldRefInput<$PrismaModel>
+    not?: NestedStringNullableWithAggregatesFilter<$PrismaModel> | string | null
+    _count?: NestedIntNullableFilter<$PrismaModel>
+    _min?: NestedStringNullableFilter<$PrismaModel>
+    _max?: NestedStringNullableFilter<$PrismaModel>
+  }
+
+  export type NestedDecimalWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
+    in?: Decimal[] | DecimalJsLike[] | number[] | string[] | ListDecimalFieldRefInput<$PrismaModel>
+    notIn?: Decimal[] | DecimalJsLike[] | number[] | string[] | ListDecimalFieldRefInput<$PrismaModel>
+    lt?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
+    lte?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
+    gt?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
+    gte?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
+    not?: NestedDecimalWithAggregatesFilter<$PrismaModel> | Decimal | DecimalJsLike | number | string
     _count?: NestedIntFilter<$PrismaModel>
-    _min?: NestedDateTimeFilter<$PrismaModel>
-    _max?: NestedDateTimeFilter<$PrismaModel>
+    _avg?: NestedDecimalFilter<$PrismaModel>
+    _sum?: NestedDecimalFilter<$PrismaModel>
+    _min?: NestedDecimalFilter<$PrismaModel>
+    _max?: NestedDecimalFilter<$PrismaModel>
+  }
+
+  export type NestedDecimalNullableWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel> | null
+    in?: Decimal[] | DecimalJsLike[] | number[] | string[] | ListDecimalFieldRefInput<$PrismaModel> | null
+    notIn?: Decimal[] | DecimalJsLike[] | number[] | string[] | ListDecimalFieldRefInput<$PrismaModel> | null
+    lt?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
+    lte?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
+    gt?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
+    gte?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
+    not?: NestedDecimalNullableWithAggregatesFilter<$PrismaModel> | Decimal | DecimalJsLike | number | string | null
+    _count?: NestedIntNullableFilter<$PrismaModel>
+    _avg?: NestedDecimalNullableFilter<$PrismaModel>
+    _sum?: NestedDecimalNullableFilter<$PrismaModel>
+    _min?: NestedDecimalNullableFilter<$PrismaModel>
+    _max?: NestedDecimalNullableFilter<$PrismaModel>
   }
 
 

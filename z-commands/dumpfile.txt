@@ -1,0 +1,250 @@
+this is dump file creatd when migarting my database schema tables dat ato supabse so i run this file code in supasbase sql editor
+
+
+
+
+--
+-- PostgreSQL database dump
+--
+
+-- Dumped from database version 16.8 (Ubuntu 16.8-0ubuntu0.24.04.1)
+-- Dumped by pg_dump version 16.8 (Ubuntu 16.8-0ubuntu0.24.04.1)
+
+SET statement_timeout = 0;
+SET lock_timeout = 0;
+SET idle_in_transaction_session_timeout = 0;
+SET client_encoding = 'UTF8';
+SET standard_conforming_strings = on;
+SELECT pg_catalog.set_config('search_path', '', false);
+SET check_function_bodies = false;
+SET xmloption = content;
+SET client_min_messages = warning;
+SET row_security = off;
+
+--
+-- Name: public; Type: SCHEMA; Schema: -; Owner: postgres
+--
+
+-- *not* creating schema, since initdb creates it
+
+
+ALTER SCHEMA public OWNER TO postgres;
+
+--
+-- Name: SCHEMA public; Type: COMMENT; Schema: -; Owner: postgres
+--
+
+COMMENT ON SCHEMA public IS '';
+
+
+SET default_tablespace = '';
+
+SET default_table_access_method = heap;
+
+--
+-- Name: Order; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public."Order" (
+    id integer NOT NULL,
+    customer text NOT NULL,
+    phone text NOT NULL,
+    address text NOT NULL,
+    priority boolean DEFAULT false,
+    cart jsonb NOT NULL,
+    created_at timestamp without time zone DEFAULT CURRENT_TIMESTAMP
+);
+
+
+ALTER TABLE public."Order" OWNER TO postgres;
+
+--
+-- Name: Order_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE public."Order_id_seq"
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER SEQUENCE public."Order_id_seq" OWNER TO postgres;
+
+--
+-- Name: Order_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE public."Order_id_seq" OWNED BY public."Order".id;
+
+
+--
+-- Name: Pizza; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public."Pizza" (
+    id integer NOT NULL,
+    name text NOT NULL,
+    "unitPrice" integer NOT NULL,
+    "imageUrl" text NOT NULL,
+    ingredients text[] NOT NULL,
+    "soldOut" boolean DEFAULT false NOT NULL
+);
+
+
+ALTER TABLE public."Pizza" OWNER TO postgres;
+
+--
+-- Name: Pizza_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE public."Pizza_id_seq"
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER SEQUENCE public."Pizza_id_seq" OWNER TO postgres;
+
+--
+-- Name: Pizza_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE public."Pizza_id_seq" OWNED BY public."Pizza".id;
+
+
+--
+-- Name: _prisma_migrations; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public._prisma_migrations (
+    id character varying(36) NOT NULL,
+    checksum character varying(64) NOT NULL,
+    finished_at timestamp with time zone,
+    migration_name character varying(255) NOT NULL,
+    logs text,
+    rolled_back_at timestamp with time zone,
+    started_at timestamp with time zone DEFAULT now() NOT NULL,
+    applied_steps_count integer DEFAULT 0 NOT NULL
+);
+
+
+ALTER TABLE public._prisma_migrations OWNER TO postgres;
+
+--
+-- Name: Order id; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public."Order" ALTER COLUMN id SET DEFAULT nextval('public."Order_id_seq"'::regclass);
+
+
+--
+-- Name: Pizza id; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public."Pizza" ALTER COLUMN id SET DEFAULT nextval('public."Pizza_id_seq"'::regclass);
+
+
+--
+-- Data for Name: Order; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+INSERT INTO public."Order" (id, customer, phone, address, priority, cart, created_at)
+VALUES 
+(1, 'sibtenajam', '+923350751261', '123 Main Street, Islamabad', false, '[{"name": "Margherita", "pizzaId": 1, "quantity": 2, "unitPrice": 12, "totalPrice": 24}, {"name": "Romana", "pizzaId": 3, "quantity": 1, "unitPrice": 15, "totalPrice": 15}]', '2025-04-24 14:16:20.46');
+
+
+--
+-- Data for Name: Pizza; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+INSERT INTO public."Pizza" (id, name, "unitPrice", "imageUrl", ingredients, "soldOut")
+VALUES
+(1, 'Margherita', 12, 'https://dclaevazetcjjkrzczpc.supabase.co/storage/v1/object/public/pizzas/pizza-1.jpg', '{"tomato","mozzarella","basil"}', false),
+(2, 'Capricciosa', 14, 'https://dclaevazetcjjkrzczpc.supabase.co/storage/v1/object/public/pizzas/pizza-2.jpg', '{"tomato","mozzarella","ham","mushrooms","artichoke"}', true),
+(3, 'Romana', 15, 'https://dclaevazetcjjkrzczpc.supabase.co/storage/v1/object/public/pizzas/pizza-3.jpg', '{"tomato","mozzarella","prosciutto"}', false),
+(4, 'Prosciutto e Rucola', 16, 'https://dclaevazetcjjkrzczpc.supabase.co/storage/v1/object/public/pizzas/pizza-4.jpg', '{"tomato","mozzarella","prosciutto","arugula"}', false),
+(5, 'Diavola', 16, 'https://dclaevazetcjjkrzczpc.supabase.co/storage/v1/object/public/pizzas/pizza-5.jpg', '{"tomato","mozzarella","spicy salami","chili flakes"}', false),
+(6, 'Vegetale', 13, 'https://dclaevazetcjjkrzczpc.supabase.co/storage/v1/object/public/pizzas/pizza-6.jpg', '{"tomato","mozzarella","bell peppers","onions","mushrooms"}', false),
+(7, 'Napoli', 16, 'https://dclaevazetcjjkrzczpc.supabase.co/storage/v1/object/public/pizzas/pizza-7.jpg', '{"tomato","mozzarella","fresh tomato","basil"}', false),
+(8, 'Siciliana', 16, 'https://dclaevazetcjjkrzczpc.supabase.co/storage/v1/object/public/pizzas/pizza-8.jpg', '{"tomato","mozzarella","anchovies","olives","capers"}', true),
+(9, 'Pepperoni', 14, 'https://dclaevazetcjjkrzczpc.supabase.co/storage/v1/object/public/pizzas/pizza-9.jpg', '{"tomato","mozzarella","pepperoni"}', false),
+(10, 'Hawaiian', 15, 'https://dclaevazetcjjkrzczpc.supabase.co/storage/v1/object/public/pizzas/pizza-10.jpg', '{"tomato","mozzarella","pineapple","ham"}', false),
+(11, 'Spinach and Mushroom', 15, 'https://dclaevazetcjjkrzczpc.supabase.co/storage/v1/object/public/pizzas/pizza-11.jpg', '{"tomato","mozzarella","spinach","mushrooms"}', false),
+(12, 'Mediterranean', 16, 'https://dclaevazetcjjkrzczpc.supabase.co/storage/v1/object/public/pizzas/pizza-12.jpg', '{"tomato","mozzarella","sun-dried tomatoes","olives","artichoke"}', false),
+(13, 'Greek', 16, 'https://dclaevazetcjjkrzczpc.supabase.co/storage/v1/object/public/pizzas/pizza-13.jpg', '{"tomato","mozzarella","spinach","feta","olives","pepperoncini"}', true),
+(14, 'Abruzzese', 16, 'https://dclaevazetcjjkrzczpc.supabase.co/storage/v1/object/public/pizzas/pizza-14.jpg', '{"tomato","mozzarella","prosciutto","arugula"}', false),
+(15, 'Pesto Chicken', 16, 'https://dclaevazetcjjkrzczpc.supabase.co/storage/v1/object/public/pizzas/pizza-15.jpg', '{"pesto","mozzarella","chicken","sun-dried tomatoes","spinach"}', false),
+(16, 'Eggplant Parmesan', 15, 'https://dclaevazetcjjkrzczpc.supabase.co/storage/v1/object/public/pizzas/pizza-16.jpg', '{"marinara","mozzarella","eggplant","parmesan"}', false),
+(17, 'Roasted Veggie', 15, 'https://dclaevazetcjjkrzczpc.supabase.co/storage/v1/object/public/pizzas/pizza-17.jpg', '{"marinara","mozzarella","zucchini","eggplant","peppers","onions"}', false),
+(18, 'Tofu and Mushroom', 15, 'https://dclaevazetcjjkrzczpc.supabase.co/storage/v1/object/public/pizzas/pizza-18.jpg', '{"marinara","mozzarella","tofu","mushrooms","bell peppers"}', false);
+
+--
+-- Data for Name: _prisma_migrations; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+INSERT INTO public."_prisma_migrations" (id, checksum, finished_at, migration_name, logs, rolled_back_at, started_at, applied_steps_count)
+VALUES 
+('c4cf10b6-2a8b-4e70-aa65-0c0e4d09a89c', 
+'e30aafb9a0f5965939e5095b9f51ae8dab28e16608da427fe3be1eff27874163', 
+'2025-04-23 03:34:09.207902+05', 
+'20250422223408_add_pizza_table', 
+NULL, 
+NULL, 
+'2025-04-23 03:34:09.167511+05', 
+1);
+
+
+--
+-- Name: Order_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('public."Order_id_seq"', 1, true);
+
+
+--
+-- Name: Pizza_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('public."Pizza_id_seq"', 1, false);
+
+
+--
+-- Name: Order Order_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public."Order"
+    ADD CONSTRAINT "Order_pkey" PRIMARY KEY (id);
+
+
+--
+-- Name: Pizza Pizza_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public."Pizza"
+    ADD CONSTRAINT "Pizza_pkey" PRIMARY KEY (id);
+
+
+--
+-- Name: _prisma_migrations _prisma_migrations_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public._prisma_migrations
+    ADD CONSTRAINT _prisma_migrations_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: SCHEMA public; Type: ACL; Schema: -; Owner: postgres
+--
+
+REVOKE USAGE ON SCHEMA public FROM PUBLIC;
+
+
+--
+-- PostgreSQL database dump complete
+--
