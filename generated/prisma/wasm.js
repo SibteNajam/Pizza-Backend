@@ -140,7 +140,8 @@ exports.Prisma.OrderScalarFieldEnum = {
   position: 'position',
   orderPrice: 'orderPrice',
   priorityPrice: 'priorityPrice',
-  estimatedDelivery: 'estimatedDelivery'
+  estimatedDelivery: 'estimatedDelivery',
+  user_id: 'user_id'
 };
 
 exports.Prisma.SortOrder = {

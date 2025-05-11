@@ -7,7 +7,7 @@ export class OrderService {
     constructor(private prisma: PrismaService) { }
 
     async createOrder(createOrderDto: CreateOrderDto) {
-        const { customer, phone, address, priority, cart, position } = createOrderDto;
+        const { customer, phone, address, priority, cart, position, user_id } = createOrderDto;
         const totalPrice = cart.reduce((sum, item) => sum + item.totalPrice, 0);
         const priorityPrice = priority ? totalPrice * 0.08 : 0;
         const deliveryTime = new Date();
@@ -23,6 +23,7 @@ export class OrderService {
                 priorityPrice,
                 position,
                 estimatedDelivery: deliveryTime.toISOString(),
+                user_id: user_id,
             },
         });
 

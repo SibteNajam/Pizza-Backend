@@ -2037,6 +2037,7 @@ export namespace Prisma {
     orderPrice: Decimal | null
     priorityPrice: Decimal | null
     estimatedDelivery: Date | null
+    user_id: string | null
   }
 
   export type OrderMaxAggregateOutputType = {
@@ -2050,6 +2051,7 @@ export namespace Prisma {
     orderPrice: Decimal | null
     priorityPrice: Decimal | null
     estimatedDelivery: Date | null
+    user_id: string | null
   }
 
   export type OrderCountAggregateOutputType = {
@@ -2064,6 +2066,7 @@ export namespace Prisma {
     orderPrice: number
     priorityPrice: number
     estimatedDelivery: number
+    user_id: number
     _all: number
   }
 
@@ -2091,6 +2094,7 @@ export namespace Prisma {
     orderPrice?: true
     priorityPrice?: true
     estimatedDelivery?: true
+    user_id?: true
   }
 
   export type OrderMaxAggregateInputType = {
@@ -2104,6 +2108,7 @@ export namespace Prisma {
     orderPrice?: true
     priorityPrice?: true
     estimatedDelivery?: true
+    user_id?: true
   }
 
   export type OrderCountAggregateInputType = {
@@ -2118,6 +2123,7 @@ export namespace Prisma {
     orderPrice?: true
     priorityPrice?: true
     estimatedDelivery?: true
+    user_id?: true
     _all?: true
   }
 
@@ -2219,6 +2225,7 @@ export namespace Prisma {
     orderPrice: Decimal
     priorityPrice: Decimal | null
     estimatedDelivery: Date | null
+    user_id: string
     _count: OrderCountAggregateOutputType | null
     _avg: OrderAvgAggregateOutputType | null
     _sum: OrderSumAggregateOutputType | null
@@ -2252,6 +2259,7 @@ export namespace Prisma {
     orderPrice?: boolean
     priorityPrice?: boolean
     estimatedDelivery?: boolean
+    user_id?: boolean
   }, ExtArgs["result"]["order"]>
 
   export type OrderSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
@@ -2266,6 +2274,7 @@ export namespace Prisma {
     orderPrice?: boolean
     priorityPrice?: boolean
     estimatedDelivery?: boolean
+    user_id?: boolean
   }, ExtArgs["result"]["order"]>
 
   export type OrderSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
@@ -2280,6 +2289,7 @@ export namespace Prisma {
     orderPrice?: boolean
     priorityPrice?: boolean
     estimatedDelivery?: boolean
+    user_id?: boolean
   }, ExtArgs["result"]["order"]>
 
   export type OrderSelectScalar = {
@@ -2294,9 +2304,10 @@ export namespace Prisma {
     orderPrice?: boolean
     priorityPrice?: boolean
     estimatedDelivery?: boolean
+    user_id?: boolean
   }
 
-  export type OrderOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "customer" | "phone" | "address" | "priority" | "cart" | "created_at" | "position" | "orderPrice" | "priorityPrice" | "estimatedDelivery", ExtArgs["result"]["order"]>
+  export type OrderOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "customer" | "phone" | "address" | "priority" | "cart" | "created_at" | "position" | "orderPrice" | "priorityPrice" | "estimatedDelivery" | "user_id", ExtArgs["result"]["order"]>
 
   export type $OrderPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "Order"
@@ -2313,6 +2324,7 @@ export namespace Prisma {
       orderPrice: Prisma.Decimal
       priorityPrice: Prisma.Decimal | null
       estimatedDelivery: Date | null
+      user_id: string
     }, ExtArgs["result"]["order"]>
     composites: {}
   }
@@ -2747,6 +2759,7 @@ export namespace Prisma {
     readonly orderPrice: FieldRef<"Order", 'Decimal'>
     readonly priorityPrice: FieldRef<"Order", 'Decimal'>
     readonly estimatedDelivery: FieldRef<"Order", 'DateTime'>
+    readonly user_id: FieldRef<"Order", 'String'>
   }
     
 
@@ -3150,7 +3163,8 @@ export namespace Prisma {
     position: 'position',
     orderPrice: 'orderPrice',
     priorityPrice: 'priorityPrice',
-    estimatedDelivery: 'estimatedDelivery'
+    estimatedDelivery: 'estimatedDelivery',
+    user_id: 'user_id'
   };
 
   export type OrderScalarFieldEnum = (typeof OrderScalarFieldEnum)[keyof typeof OrderScalarFieldEnum]
@@ -3369,6 +3383,7 @@ export namespace Prisma {
     orderPrice?: DecimalFilter<"Order"> | Decimal | DecimalJsLike | number | string
     priorityPrice?: DecimalNullableFilter<"Order"> | Decimal | DecimalJsLike | number | string | null
     estimatedDelivery?: DateTimeNullableFilter<"Order"> | Date | string | null
+    user_id?: UuidFilter<"Order"> | string
   }
 
   export type OrderOrderByWithRelationInput = {
@@ -3383,6 +3398,7 @@ export namespace Prisma {
     orderPrice?: SortOrder
     priorityPrice?: SortOrderInput | SortOrder
     estimatedDelivery?: SortOrderInput | SortOrder
+    user_id?: SortOrder
   }
 
   export type OrderWhereUniqueInput = Prisma.AtLeast<{
@@ -3400,6 +3416,7 @@ export namespace Prisma {
     orderPrice?: DecimalFilter<"Order"> | Decimal | DecimalJsLike | number | string
     priorityPrice?: DecimalNullableFilter<"Order"> | Decimal | DecimalJsLike | number | string | null
     estimatedDelivery?: DateTimeNullableFilter<"Order"> | Date | string | null
+    user_id?: UuidFilter<"Order"> | string
   }, "id">
 
   export type OrderOrderByWithAggregationInput = {
@@ -3414,6 +3431,7 @@ export namespace Prisma {
     orderPrice?: SortOrder
     priorityPrice?: SortOrderInput | SortOrder
     estimatedDelivery?: SortOrderInput | SortOrder
+    user_id?: SortOrder
     _count?: OrderCountOrderByAggregateInput
     _avg?: OrderAvgOrderByAggregateInput
     _max?: OrderMaxOrderByAggregateInput
@@ -3436,6 +3454,7 @@ export namespace Prisma {
     orderPrice?: DecimalWithAggregatesFilter<"Order"> | Decimal | DecimalJsLike | number | string
     priorityPrice?: DecimalNullableWithAggregatesFilter<"Order"> | Decimal | DecimalJsLike | number | string | null
     estimatedDelivery?: DateTimeNullableWithAggregatesFilter<"Order"> | Date | string | null
+    user_id?: UuidWithAggregatesFilter<"Order"> | string
   }
 
   export type PizzaCreateInput = {
@@ -3509,6 +3528,7 @@ export namespace Prisma {
     orderPrice: Decimal | DecimalJsLike | number | string
     priorityPrice?: Decimal | DecimalJsLike | number | string | null
     estimatedDelivery?: Date | string | null
+    user_id: string
   }
 
   export type OrderUncheckedCreateInput = {
@@ -3523,6 +3543,7 @@ export namespace Prisma {
     orderPrice: Decimal | DecimalJsLike | number | string
     priorityPrice?: Decimal | DecimalJsLike | number | string | null
     estimatedDelivery?: Date | string | null
+    user_id: string
   }
 
   export type OrderUpdateInput = {
@@ -3536,6 +3557,7 @@ export namespace Prisma {
     orderPrice?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     priorityPrice?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
     estimatedDelivery?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    user_id?: StringFieldUpdateOperationsInput | string
   }
 
   export type OrderUncheckedUpdateInput = {
@@ -3550,6 +3572,7 @@ export namespace Prisma {
     orderPrice?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     priorityPrice?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
     estimatedDelivery?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    user_id?: StringFieldUpdateOperationsInput | string
   }
 
   export type OrderCreateManyInput = {
@@ -3564,6 +3587,7 @@ export namespace Prisma {
     orderPrice: Decimal | DecimalJsLike | number | string
     priorityPrice?: Decimal | DecimalJsLike | number | string | null
     estimatedDelivery?: Date | string | null
+    user_id: string
   }
 
   export type OrderUpdateManyMutationInput = {
@@ -3577,6 +3601,7 @@ export namespace Prisma {
     orderPrice?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     priorityPrice?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
     estimatedDelivery?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    user_id?: StringFieldUpdateOperationsInput | string
   }
 
   export type OrderUncheckedUpdateManyInput = {
@@ -3591,6 +3616,7 @@ export namespace Prisma {
     orderPrice?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     priorityPrice?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
     estimatedDelivery?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    user_id?: StringFieldUpdateOperationsInput | string
   }
 
   export type IntFilter<$PrismaModel = never> = {
@@ -3785,6 +3811,18 @@ export namespace Prisma {
     not?: NestedDecimalNullableFilter<$PrismaModel> | Decimal | DecimalJsLike | number | string | null
   }
 
+  export type UuidFilter<$PrismaModel = never> = {
+    equals?: string | StringFieldRefInput<$PrismaModel>
+    in?: string[] | ListStringFieldRefInput<$PrismaModel>
+    notIn?: string[] | ListStringFieldRefInput<$PrismaModel>
+    lt?: string | StringFieldRefInput<$PrismaModel>
+    lte?: string | StringFieldRefInput<$PrismaModel>
+    gt?: string | StringFieldRefInput<$PrismaModel>
+    gte?: string | StringFieldRefInput<$PrismaModel>
+    mode?: QueryMode
+    not?: NestedUuidFilter<$PrismaModel> | string
+  }
+
   export type SortOrderInput = {
     sort: SortOrder
     nulls?: NullsOrder
@@ -3802,6 +3840,7 @@ export namespace Prisma {
     orderPrice?: SortOrder
     priorityPrice?: SortOrder
     estimatedDelivery?: SortOrder
+    user_id?: SortOrder
   }
 
   export type OrderAvgOrderByAggregateInput = {
@@ -3821,6 +3860,7 @@ export namespace Prisma {
     orderPrice?: SortOrder
     priorityPrice?: SortOrder
     estimatedDelivery?: SortOrder
+    user_id?: SortOrder
   }
 
   export type OrderMinOrderByAggregateInput = {
@@ -3834,6 +3874,7 @@ export namespace Prisma {
     orderPrice?: SortOrder
     priorityPrice?: SortOrder
     estimatedDelivery?: SortOrder
+    user_id?: SortOrder
   }
 
   export type OrderSumOrderByAggregateInput = {
@@ -3938,6 +3979,21 @@ export namespace Prisma {
     _sum?: NestedDecimalNullableFilter<$PrismaModel>
     _min?: NestedDecimalNullableFilter<$PrismaModel>
     _max?: NestedDecimalNullableFilter<$PrismaModel>
+  }
+
+  export type UuidWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: string | StringFieldRefInput<$PrismaModel>
+    in?: string[] | ListStringFieldRefInput<$PrismaModel>
+    notIn?: string[] | ListStringFieldRefInput<$PrismaModel>
+    lt?: string | StringFieldRefInput<$PrismaModel>
+    lte?: string | StringFieldRefInput<$PrismaModel>
+    gt?: string | StringFieldRefInput<$PrismaModel>
+    gte?: string | StringFieldRefInput<$PrismaModel>
+    mode?: QueryMode
+    not?: NestedUuidWithAggregatesFilter<$PrismaModel> | string
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedStringFilter<$PrismaModel>
+    _max?: NestedStringFilter<$PrismaModel>
   }
 
   export type PizzaCreateingredientsInput = {
@@ -4127,6 +4183,17 @@ export namespace Prisma {
     not?: NestedDecimalNullableFilter<$PrismaModel> | Decimal | DecimalJsLike | number | string | null
   }
 
+  export type NestedUuidFilter<$PrismaModel = never> = {
+    equals?: string | StringFieldRefInput<$PrismaModel>
+    in?: string[] | ListStringFieldRefInput<$PrismaModel>
+    notIn?: string[] | ListStringFieldRefInput<$PrismaModel>
+    lt?: string | StringFieldRefInput<$PrismaModel>
+    lte?: string | StringFieldRefInput<$PrismaModel>
+    gt?: string | StringFieldRefInput<$PrismaModel>
+    gte?: string | StringFieldRefInput<$PrismaModel>
+    not?: NestedUuidFilter<$PrismaModel> | string
+  }
+
   export type NestedBoolNullableWithAggregatesFilter<$PrismaModel = never> = {
     equals?: boolean | BooleanFieldRefInput<$PrismaModel> | null
     not?: NestedBoolNullableWithAggregatesFilter<$PrismaModel> | boolean | null
@@ -4230,6 +4297,20 @@ export namespace Prisma {
     _sum?: NestedDecimalNullableFilter<$PrismaModel>
     _min?: NestedDecimalNullableFilter<$PrismaModel>
     _max?: NestedDecimalNullableFilter<$PrismaModel>
+  }
+
+  export type NestedUuidWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: string | StringFieldRefInput<$PrismaModel>
+    in?: string[] | ListStringFieldRefInput<$PrismaModel>
+    notIn?: string[] | ListStringFieldRefInput<$PrismaModel>
+    lt?: string | StringFieldRefInput<$PrismaModel>
+    lte?: string | StringFieldRefInput<$PrismaModel>
+    gt?: string | StringFieldRefInput<$PrismaModel>
+    gte?: string | StringFieldRefInput<$PrismaModel>
+    not?: NestedUuidWithAggregatesFilter<$PrismaModel> | string
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedStringFilter<$PrismaModel>
+    _max?: NestedStringFilter<$PrismaModel>
   }
 
 

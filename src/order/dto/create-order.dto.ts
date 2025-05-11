@@ -1,4 +1,5 @@
-import { IsString, IsBoolean, IsArray, IsNotEmpty, IsNumber, IsOptional } from 'class-validator';
+import { IsString, IsBoolean, IsArray, IsNotEmpty, IsNumber, IsOptional, IsUUID } from 'class-validator';
+
 
 
 class CartItem {
@@ -52,4 +53,8 @@ export class CreateOrderDto {
     @IsString()
     @IsOptional() // Optional as it is calculated on the backend
     deliveryTime?: string; // You can format it to a string or Date if preferred
+
+    @IsUUID()
+    @IsNotEmpty()
+    user_id: string;  // Add user_id here
 }

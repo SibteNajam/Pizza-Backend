@@ -29,4 +29,5 @@ model Order {
   orderPrice        Decimal   @db.Decimal
   priorityPrice     Decimal?  @db.Decimal
   estimatedDelivery DateTime? @db.Timestamptz(6)
+  user_id           String    @db.Uuid
 }

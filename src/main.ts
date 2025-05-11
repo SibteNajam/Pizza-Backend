@@ -10,14 +10,15 @@ async function bootstrap() {
   // ✅ Enable strict global validation
   app.useGlobalPipes(
     new ValidationPipe({
-      whitelist: true,             // strips properties that do not have decorators
-      forbidNonWhitelisted: true,  // throws error if unknown properties are present
+      whitelist: true,// strips properties that do not have decorators
+      forbidNonWhitelisted: true, // throws error if unknown properties are present
     }),
   );
 
   // Enable CORS
   app.enableCors({
-    origin: 'http://localhost:5173', // Allow requests only from this origin
+    origin: ['http://localhost:5173', 'https://sibtenajam-pf.netlify.app'],
+    credentials: true, // optional, only needed if you're using cookies/auth headers
   });
 
   // Start the application
