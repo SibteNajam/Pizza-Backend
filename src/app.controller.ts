@@ -1,10 +1,9 @@
 import { Controller, Get } from '@nestjs/common';
+
 @Controller()
 export class AppController {
-  @Get('menu')
-  getMenu() {
-    return [
-    ];
+  @Get()
+  getRoot() {
+    return { message: 'Pizza backend is running 🍕' };
   }
-
 }
