@@ -1,41 +1,35 @@
-// api/index.ts
-import { createServer, proxy } from 'aws-serverless-express';
-import { Callback, Context, Handler } from 'aws-lambda';
-import { AppModule } from '../src/app.module';
 import { NestFactory } from '@nestjs/core';
+import { AppModule } from '../src/app.module';
 import { ExpressAdapter } from '@nestjs/platform-express';
+import express from 'express'; // Default import for express
+import serverless from 'serverless-http'; // Default import for serverless-http
 import { ValidationPipe } from '@nestjs/common';
-import * as express from 'express';
 
-let cachedServer;
+const expressApp = express();
 
-async function bootstrapServer() {
-    if (!cachedServer) {
-        const expressApp = express();
-        const adapter = new ExpressAdapter(expressApp);
-        const app = await NestFactory.create(AppModule, adapter);
-
-        app.useGlobalPipes(
-            new ValidationPipe({
-                whitelist: true,
-                forbidNonWhitelisted: true,
-            }),
-        );
-
-        app.enableCors({
-            origin: ['http://localhost:5173', 'https://sibtenajam-pf.netlify.app'],
-            credentials: true,
-        });
-
-        await app.init();
-        cachedServer = createServer(expressApp);
-    }
-    return cachedServer;
+async function bootstrap() {
+    const nestApp = await NestFactory.create(AppModule, new ExpressAdapter(expressApp));
+    nestApp.useGlobalPipes(
+        new ValidationPipe({
+            whitelist: true,
+            forbidNonWhitelisted: true,
+        }),
+    );
+    nestApp.enableCors({
+        origin: ['http://localhost:5173', 'https://sibtenajam-pf.netlify.app'],
+        credentials: true,
+    });
+    await nestApp.init();
+    return serverless(expressApp); // Use the default export
 }
 
-export const handler: Handler = async (event: any, context: Context, callback: Callback) => {
-    const server = await bootstrapServer();
-    return proxy(server, event, context, 'PROMISE').promise;
+// Export the handler function
+export default async (req: any, res: any) => {
+    try {
+        const handler = await bootstrap();
+        return handler(req, res);
+    } catch (error) {
+        console.error('Server error:', error);
+        res.status(500).send('Internal Server Error');
+    }
 };
-
-
